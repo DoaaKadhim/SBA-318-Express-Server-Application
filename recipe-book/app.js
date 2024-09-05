@@ -1,17 +1,25 @@
+//To see all recipes: http://localhost:3002/recipes
+//To see all users: http://localhost:3002/users
+//To see all comments: http://localhost:3002/comments
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
-const port = 3004;
+const port = 3005;
+
+const recipesRouter = require('./routes/recipes');
+const usersRouter = require('./routes/users');
+const commentsRouter = require('./routes/comments');
 
 // Middleware setup
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
-app.use(methodOverride('_method'));
-
-// Set EJS as the view engine
+app.use(express.static('public'));  // For serving static files
+app.use(methodOverride('_method')); // For supporting PUT and DELETE methods in forms
 app.set('view engine', 'ejs');
+// app.set('views', './views'); // Optional if views are in the default folder 'views'
+
 
 // Custom Middleware for Logging Requests
 app.use((req, res, next) => {
@@ -19,7 +27,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Custom Middleware for Recipe Validation
+// Custom Middleware for Recipe Validation (can also be moved to recipes router)
 function validateRecipe(req, res, next) {
   if (!req.body.name || !req.body.ingredients || !req.body.instructions) {
     return res.status(400).render('error', { message: 'Recipe must include name, ingredients, and instructions.' });
@@ -28,9 +36,11 @@ function validateRecipe(req, res, next) {
 }
 
 // Routes
-app.use('/recipes', require('./routes/recipes'));
+app.use('/recipes', recipesRouter);   // Recipes routes
+app.use('/users', usersRouter);       // Users routes
+app.use('/comments', commentsRouter); // Comments routes
 
-// Sample Route
+// Sample Route (Home page)
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

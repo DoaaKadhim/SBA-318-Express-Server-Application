@@ -8,9 +8,15 @@ let recipes = [
 ];
 
 // GET all recipes
+// router.get('/', (req, res) => {
+//   res.render('index', { recipes });
+// });
+
+// GET all recipes
 router.get('/', (req, res) => {
-  res.render('index', { recipes });
+  res.render('recipes', { recipes });
 });
+
 
 // GET a single recipe by ID
 router.get('/:id', (req, res) => {
