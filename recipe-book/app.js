@@ -2,9 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
-const port = 3000;
+const port = 3002;
 
-// Middleware
+// Middleware setup
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
@@ -29,13 +30,18 @@ function validateRecipe(req, res, next) {
 // Routes
 app.use('/recipes', require('./routes/recipes'));
 
+// Sample Route
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 // Error-handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).render('error', { message: 'Something went wrong!' });
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running at http://localhost:${port}`);
 });
-
