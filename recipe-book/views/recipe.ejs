@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= recipe.name %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1><%= recipe.name %></h1>
+  <p><strong>Ingredients:</strong> <%= recipe.ingredients %></p>
+  <p><strong>Instructions:</strong> <%= recipe.instructions %></p>
+  <a href="/recipes">Back to Recipes</a>
+  <form action="/recipes/<%= recipe.id %>?_method=patch" method="post">
+    <input type="text" name="name" value="<%= recipe.name %>">
+    <input type="text" name="ingredients" value="<%= recipe.ingredients %>">
+    <textarea name="instructions"><%= recipe.instructions %></textarea>
+    <button type="submit">Update Recipe</button>
+  </form>
+</body>
+</html>
