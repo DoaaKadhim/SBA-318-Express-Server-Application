@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const app = express();
-const port = 3002;
+const port = 3004;
 
 // Middleware setup
 app.use(express.json());

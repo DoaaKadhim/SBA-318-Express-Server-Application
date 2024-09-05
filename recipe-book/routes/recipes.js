@@ -2,15 +2,6 @@ const express = require('express');
 const router = express.Router();
 const validateRecipe = require('../middlewares/validateRecipe'); // Adjust the path as necessary
 
-// Define routes
-router.post('/', validateRecipe, (req, res) => {
-  // Handle recipe creation
-  res.send('Recipe created!');
-});
-
-module.exports = router;
-
-
 let recipes = [
   { id: 1, name: 'Spaghetti Carbonara', ingredients: 'Pasta, eggs, pancetta, Parmesan cheese', instructions: 'Cook pasta, mix with eggs, pancetta, and cheese.' },
   { id: 2, name: 'Chicken Curry', ingredients: 'Chicken, curry powder, coconut milk, onion', instructions: 'Cook chicken, add curry powder and coconut milk, simmer.' }
