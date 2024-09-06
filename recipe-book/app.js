@@ -87,6 +87,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+const validateRecipe = (req, res, next) => {
+  // Optional: Log request body for debugging
+  console.log('Validating Recipe:', req.body);
+  next(); // Proceed without validation for debugging
+};
+
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).render('error', { message: 'Something went wrong!' });
