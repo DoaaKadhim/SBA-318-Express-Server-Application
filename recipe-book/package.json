@@ -1,7 +1,6 @@
 {
-  "name": "recipe-book",
+  "name": "sba-318-express-server-application",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,10 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "method-override": "^3.0.0"
-  }
+  "description": ""
 }
