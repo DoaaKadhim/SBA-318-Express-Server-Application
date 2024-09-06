@@ -199,6 +199,10 @@ router.get('/', (req, res) => {
   res.render('index', { recipes });
 });
 
+// Regular expression to match a 24-character hexadecimal string
+const idPattern = /^[a-fA-F0-9]{24}$/;
+
+
 // GET a single recipe by ID
 router.get('/:id', (req, res) => {
   const recipe = recipes.find(r => r.id === parseInt(req.params.id));
